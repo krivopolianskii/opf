@@ -19,9 +19,11 @@ def opf():
 
 @opf.command()
 @click.option(
-    '--test', is_flag=True, help='Running in test environment')
+    '--verbose', is_flag=True, help='Running in test environment')
 def runopt(**kwargs):
     """Run optimization
     """
-    model.runopt()
+    verbose = kwargs.get('verbose')
+
+    model.runopt(verbose=verbose)
 

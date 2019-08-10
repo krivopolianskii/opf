@@ -11,7 +11,7 @@ from opf import config
 logger = logging.getLogger('opf')
 
 
-def runopt():
+def runopt(verbose=True):
     logger.info(f'model started')
     model = pyscipopt.Model()
 
@@ -23,11 +23,18 @@ def runopt():
     model = init_order_constraints(model, start_time)
     model = init_station_constraints(model, start_time, delta)
     model.setObjective(end_time)
+
+    if not verbose:
+        model.hideOutput()
+
     model.optimize()
+
     if model.getStatus() == 'optimal':
         results = display_results(model, start_time)
         for _, row in results.iterrows():
-            logger.info(f'object {row.object} started on station {row.station} at {row.start}')
+            logger.info(
+                f'object {row.object} on station {row.station}: '
+                f'processing from {row.start:.1f} to {row.end:.1f}')
 
 
 def init_start_time(model):
