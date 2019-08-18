@@ -16,7 +16,7 @@ except IOError:
 setup(
     name='opf',
     version=version,
-    description='One-piece-flow',
+    description='flow',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='Vladimir Krivopolianskii',

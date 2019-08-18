@@ -44,7 +44,6 @@ def model(**kwargs):
 
     if model.is_optimal():
         results = model.get_results()
-
         for i, row in results.iterrows():
             logger.info(
                 f'object {row.object} on {row.station} is '

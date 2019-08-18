@@ -16,6 +16,7 @@ logger = logging.getLogger('opf')
 __all__ = ['SimpleModel']
 
 
+# A Model parent class
 class ModelBase(abc.ABC):
     def __init__(self, objects, stations, processing_time, **kwargs):
         # list of objects
@@ -155,5 +156,7 @@ class SimpleModel(ModelBase):
 
     def set_objective(self):
         self.model.setObjective(self.end_time)
+
+
 
 
